@@ -39,10 +39,10 @@
             width: 100%;
             /* Taustagradientti */
             background: linear-gradient(
-                178deg, 
+                177deg, 
                 var(--color-bg-dark) 0%, 
-                var(--color-bg-dark) 38%, 
-                var(--color-accent-orange) 38%, 
+                var(--color-bg-dark) 45%, 
+                var(--color-accent-orange) 45%, 
                 var(--color-accent-orange) 100%
             );
             display: flex;
@@ -67,43 +67,43 @@
             justify-content: flex-end; /* Työntää sisällön alas */
         }
 
-     /* KUVA TYÖPÖYDÄLLÄ - PIENENNETTY KOKO */
-.profile-image-container {
-    position: absolute;
-    /* Lasketaan kuvaa alemmas, jotta se "seisoo" tukevammin oranssilla */
-    top: 5vh;       
-    left: 0;
-    
-    /* Pienennetään korkeutta, koska leveys pienenee */
-    height: 90vh;   
-    
-    /* Pienennetään leveyttä merkittävästi */
-    width: 35vw; 
-    
-    /* Asetetaan maksimileveys pikseleinä, jotta kuva ei kasva liikaa isoilla näytöillä */
-    max-width: 500px; 
-    
-    z-index: 1;
-    pointer-events: none;
-    display: flex;
-    align-items: flex-end; 
-}
+        /* --- KUVAAN TEHDYT MUUTOKSET TÄSSÄ --- */
+        .profile-image-container {
+            position: absolute;
+            
+            /* MUUTOS 1: Kuva nostettu reilusti ylös negatiivisella arvolla */
+            top: -15vh;       
+            
+            left: -2vw; 
+            
+            /* MUUTOS 2: Korkeutta lisätty, jotta kuva ylettyy alas asti */
+            height: 115vh;   
+            
+            /* MUUTOS 3: Leveyttä lisätty vastaamaan toivetta */
+            width: 45vw; 
+            
+            max-width: none; 
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            align-items: flex-end;
+        }
 
-.profile-image {
-    /* Kuva täyttää säiliön leveyden, korkeus skaalautuu automaattisesti */
-    width: 100%;
-    height: auto; 
-    
-    object-fit: contain;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
-}
+        .profile-image {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+        }
+
         .awards-section {
             margin-bottom: 2rem;
             position: relative;
             z-index: 2;
         }
 
-        /* AWARDS-otsikon tyylit */
+        /* AWARDS-otsikon tyylit (Valkoinen) */
         .awards-heading {
             color: var(--color-text-white);
             text-transform: uppercase;
@@ -182,7 +182,7 @@
         /* Experience-osio */
         .experience-section {
             color: var(--color-text-white);
-            margin-top: 4rem; 
+            margin-top: 2rem; 
         }
         
         .education-section {
@@ -297,7 +297,7 @@
         
         <div class="left-column">
             <div class="profile-image-container">
-                <img src="samu.png" alt="Samu Karjalainen" class="profile-image">
+                <img src="Samu.png" alt="Samu Karjalainen" class="profile-image">
             </div>
 
             <section class="awards-section">
