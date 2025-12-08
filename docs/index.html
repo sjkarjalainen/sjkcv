@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         /* --- CSS-TYYLIT --- */
         :root {
@@ -142,7 +144,7 @@
             margin-top: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .contact-item {
@@ -154,10 +156,12 @@
             font-weight: 700;
         }
 
-        /* Icon placeholder styles */
-        .icon-placeholder {
+        /* UUSI: Font Awesome ikonien tyylittely (korvaa vanhan .icon-placeholder tyylin) */
+        .contact-item i {
             color: var(--color-accent-orange);
-            font-weight: 900;
+            font-size: 1.3rem;
+            min-width: 30px; /* Varmistaa että tekstit alkavat samasta kohdasta */
+            text-align: center;
         }
 
         /* Experience-osio (Oranssilla alueella) */
@@ -197,7 +201,6 @@
         /* --- RESPONSIVISUUS (Mobiilinäkymä) --- */
         @media (max-width: 900px) {
             .cv-container {
-                /* Yksinkertaistetaan tausta mobiilissa */
                 background: var(--color-bg-dark);
                 padding: 1rem;
                 height: auto;
@@ -214,11 +217,11 @@
                 left: 0;
                 margin-bottom: -100px; /* Kuva menee hieman tekstin alle */
                 z-index: 0;
+                text-align: center; /* Keskittää kuvan mobiilissa */
+                width: 100%;
             }
 
             .profile-image {
-                 /* Käännetään kuva mobiilissa, jotta katse on tekstiin päin, jos tarpeen */
-                 /* transform: scaleX(-1); */
                  object-position: top center;
             }
             
@@ -226,10 +229,9 @@
                 padding-left: 0;
                 position: relative;
                 z-index: 2;
-                /* Lisätään oranssi tausta experience-osiolle mobiilissa */
                 background: linear-gradient(to bottom, transparent 0%, var(--color-accent-orange) 20%);
                 padding: 2rem;
-                margin: 0 -1rem -1rem -1rem; /* Negatiivinen marginaali täyttämään tila */
+                margin: 0 -1rem -1rem -1rem;
                 border-radius: 20px 20px 0 0;
             }
 
@@ -238,7 +240,6 @@
             }
 
             .awards-section {
-                /* Siirretään awards mobiilissa loppuun tai alkuun */
                 order: 3; 
                 padding: 2rem;
                 background: var(--color-bg-dark);
@@ -254,7 +255,7 @@
         
         <div class="left-column">
             <div class="profile-image-container">
-                <img src="IMG_3193.png.png" alt="Samu Karjalainen" class="profile-image">
+                <img src="samu.png" alt="Samu Karjalainen" class="profile-image">
             </div>
 
             <section class="awards-section">
@@ -280,9 +281,15 @@
                 </p>
                 
                 <div class="contact-info">
-                    <a href="https://linkedin.com/in/karjalainensamu" class="contact-item"><span class="icon-placeholder">[IN]</span> linkedin.com/in/karjalainensamu</a>
-                    <a href="mailto:samu.j.karjalainen@gmail.com" class="contact-item"><span class="icon-placeholder">[EMAIL]</span> samu.j.karjalainen@gmail.com</a>
-                    <span class="contact-item"><span class="icon-placeholder">[TEL]</span> +358 40 410 6156</span>
+                    <a href="https://linkedin.com/in/karjalainensamu" class="contact-item">
+                        <i class="fa-brands fa-linkedin"></i> linkedin.com/in/karjalainensamu
+                    </a>
+                    <a href="mailto:samu.j.karjalainen@gmail.com" class="contact-item">
+                        <i class="fa-solid fa-envelope"></i> samu.j.karjalainen@gmail.com
+                    </a>
+                    <span class="contact-item">
+                        <i class="fa-solid fa-phone"></i> +358 40 410 6156
+                    </span>
                 </div>
             </header>
 
