@@ -67,30 +67,35 @@
             justify-content: flex-end; /* Työntää sisällön alas */
         }
 
-        /* KUVA TYÖPÖYDÄLLÄ - PÄIVITETTY KOKO */
-        .profile-image-container {
-            position: absolute;
-            /* Nostetaan kuvaa reilusti ylös negatiivisella arvolla */
-            top: -12vh;       
-            left: 0;
-            /* Kasvatetaan korkeutta merkittävästi, jotta se täyttää pinkin alueen */
-            height: 125vh;   
-            /* Annetaan lisää tilaa leventyä suhteessa korkeuteen */
-            max-width: 75vw; 
-            z-index: 1;
-            pointer-events: none;
-            display: flex;
-            align-items: flex-end;
-        }
+       /* KUVA TYÖPÖYDÄLLÄ - PAKOTETTU ISO KOKO */
+.profile-image-container {
+    position: absolute;
+    /* Nostetaan kuvaa reilusti ylös, jotta pää ei leikkaudu pois kun kuva suurenee */
+    top: -15vh;       
+    left: -5vw; /* Siirretään hieman vasemmalle, jotta se mahtuu paremmin */
+    
+    /* Annetaan valtavasti tilaa pystysuunnassa */
+    height: 140vh;   
+    
+    /* TÄRKEÄ: Pakotetaan leveys (width), ei maksimileveyttä (max-width). */
+    /* Tämä pakottaa selaimen venyttämään kuvan tähän leveyteen. */
+    width: 60vw; 
+    max-width: none; /* Poistetaan rajoitukset */
+    
+    z-index: 1;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end; /* Pitää kuvan alareunassa kiinni */
+}
 
-        .profile-image {
-            height: 100%;
-            width: auto;
-            max-width: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
-        }
-
+.profile-image {
+    /* Kuva täyttää säiliön leveyden, korkeus skaalautuu automaattisesti */
+    width: 100%;
+    height: auto; 
+    
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+}
         .awards-section {
             margin-bottom: 2rem;
             position: relative;
