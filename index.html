@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samu Karjalainen - Multidisciplinary Designer CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS-TYYLIT --- */
+        :root {
+            --color-bg-dark: #111111;
+            --color-accent-orange: #FF5722; /* Valtra-tyyppinen oranssi/punainen */
+            --color-text-white: #ffffff;
+            --color-text-light-gray: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-white);
+            overflow-x: hidden; /* Estetään sivuttaisvieritys diagonaalitaustan takia */
+        }
+
+        /* Pääkonteineri, joka hallitsee taustagrafiikkaa */
+        .cv-container {
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            /* Luodaan diagonaalinen tausta CSS-gradientilla */
+            background: linear-gradient(
+                165deg, 
+                var(--color-bg-dark) 0%, 
+                var(--color-bg-dark) 55%, 
+                var(--color-accent-orange) 55%, 
+                var(--color-accent-orange) 100%
+            );
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Sisällön wrapperi, joka rajaa leveyden */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Vasen palsta kuvalle, oikea tekstille */
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 2; /* Varmistaa että sisältö on taustan päällä */
+        }
+
+        /* --- VASEN PALSTA (Kuva ja Awards) --- */
+        .left-column {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Työntää Awards-osion alas */
+        }
+
+        /* Henkilökuvan tyylit */
+        .profile-image-container {
+            position: absolute;
+            top: 0;
+            left: -50px; /* Hienosäätö kuvan sijainnille */
+            height: 95vh;
+            z-index: 1;
+            pointer-events: none; /* Jotta tekstiä voi valita kuvan päältä */
+        }
+
+        .profile-image {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            /* Tärkeä: Tämä saa kuvan näyttämään siltä, että se seisoo oranssin päällä */
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+        }
+
+        .awards-section {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2; /* Teksti kuvan jalkojen päällä */
+        }
+
+        .awards-heading {
+            color: var(--color-accent-orange);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .awards-list {
+            list-style: none;
+        }
+
+        .awards-list li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- OIKEA PALSTA (Pääsisältö) --- */
+        .right-column {
+            padding-left: 2rem;
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* Header-osio (Nimi ja Summary) */
+        .header-section h1 {
+            font-weight: 900;
+            font-size: 4rem;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .header-section h2 {
+            color: var(--color-accent-orange);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .summary-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            color: var(--color-text-light-gray);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--color-text-white);
+            font-weight: 700;
+        }
+
+        /* Icon placeholder styles */
+        .icon-placeholder {
+            color: var(--color-accent-orange);
+            font-weight: 900;
+        }
+
+        /* Experience-osio (Oranssilla alueella) */
+        .experience-section, .education-section {
+            /* Teksti on valkoista, koska tausta on oranssi tässä kohtaa */
+            color: var(--color-text-white); 
+        }
+
+        .section-heading {
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .job-item {
+            margin-bottom: 2rem;
+        }
+
+        .job-title {
+            font-weight: 900;
+            font-size: 1.1rem;
+        }
+
+        .job-company {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .job-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* --- RESPONSIVISUUS (Mobiilinäkymä) --- */
+        @media (max-width: 900px) {
+            .cv-container {
+                /* Yksinkertaistetaan tausta mobiilissa */
+                background: var(--color-bg-dark);
+                padding: 1rem;
+                height: auto;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr; /* Yksi palsta */
+                gap: 2rem;
+            }
+
+            .profile-image-container {
+                position: relative;
+                height: 50vh;
+                left: 0;
+                margin-bottom: -100px; /* Kuva menee hieman tekstin alle */
+                z-index: 0;
+            }
+
+            .profile-image {
+                 /* Käännetään kuva mobiilissa, jotta katse on tekstiin päin, jos tarpeen */
+                 /* transform: scaleX(-1); */
+                 object-position: top center;
+            }
+            
+            .right-column {
+                padding-left: 0;
+                position: relative;
+                z-index: 2;
+                /* Lisätään oranssi tausta experience-osiolle mobiilissa */
+                background: linear-gradient(to bottom, transparent 0%, var(--color-accent-orange) 20%);
+                padding: 2rem;
+                margin: 0 -1rem -1rem -1rem; /* Negatiivinen marginaali täyttämään tila */
+                border-radius: 20px 20px 0 0;
+            }
+
+            .header-section h1 {
+                font-size: 3rem;
+            }
+
+            .awards-section {
+                /* Siirretään awards mobiilissa loppuun tai alkuun */
+                order: 3; 
+                padding: 2rem;
+                background: var(--color-bg-dark);
+                margin: 0 -1rem -1rem -1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-container">
+    <div class="content-wrapper">
+        
+        <div class="left-column">
+            <div class="profile-image-container">
+                <img src="placeholder-image.png" alt="Samu Karjalainen" class="profile-image">
+            </div>
+
+            <section class="awards-section">
+                <h3 class="awards-heading">AWARDS</h3>
+                <ul class="awards-list">
+                    <li>Red Dot Best of the Best 2025 — Valtra S Series</li>
+                    <li>iF Design Award 2025 — Valtra S Series</li>
+                    <li>Good Design Award 2024 — Valtra S Series</li>
+                    <li>Red Dot Award 2023 — Valtra Q Series</li>
+                    <li>Red Dot Award 2022 — Valtra N Series</li>
+                    <li>Red Dot & iF Awards 2021 — Valtra G Series</li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="right-column">
+            
+            <header class="header-section">
+                <h1>SAMU<br>KARJALAINEN</h1>
+                <h2>Multidisciplinary Designer</h2>
+                <p class="summary-text">
+                    Multidisciplinary designer combining UI/UX, HMI systems, visual design, industrial design, and advanced 3D visualization. Signature strength in visual refinement.
+                </p>
+                
+                <div class="contact-info">
+                    <a href="https://linkedin.com/in/karjalainensamu" class="contact-item"><span class="icon-placeholder">[IN]</span> linkedin.com/in/karjalainensamu</a>
+                    <a href="mailto:samu.j.karjalainen@gmail.com" class="contact-item"><span class="icon-placeholder">[EMAIL]</span> samu.j.karjalainen@gmail.com</a>
+                    <span class="contact-item"><span class="icon-placeholder">[TEL]</span> +358 40 410 6156</span>
+                </div>
+            </header>
+
+            <section class="experience-section">
+                <h3 class="section-heading">EXPERIENCE</h3>
+                
+                <div class="job-item">
+                    <div class="job-company">Valtra Inc. (AGCO Corporation)</div> (2017–Present)
+                    <div class="job-title">Lead Industrial Designer / HMI</div>
+                    <p class="job-description">Leading complete visual and interaction design of Valtra Smart Display including UI logic, visual system, iconography, 3D content, menu architecture, component library, and end-to-end interaction flows. Responsible for every design detail on the display panel.</p>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-company">Industrial Designer / Trainee</div> (2017–2018)
+                    <p class="job-description">Developed design language, created UI assets and icons. Contributed to award-winning product families (S, Q, N, G Series).</p>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-company">Self-Employed Designer</div> (2016–2021)
+                    <p class="job-description">One-person service for smaller companies covering branding, visual design, product imagery, and web design.</p>
+                </div>
+
+                <div class="job-item">
+                    <div class="job-company">Komia Design Corp.</div> (2013–2016)
+                    <div class="job-title">Junior Designer & Trainee</div>
+                    <p class="job-description">3D modeling, concepting, technical drawings, and visualization for clients such as Pole Bicycles and Kiho / Mastercom.</p>
+                </div>
+            </section>
+
+             <section class="education-section">
+                <h3 class="section-heading">EDUCATION</h3>
+                 <div class="job-item">
+                    <div class="job-title">Bachelor of Industrial & Product Design</div>
+                    <p class="job-description">Turku University of Applied Sciences</p>
+                </div>
+            </section>
+
+        </div> </div> </div> </body>
+</html>
