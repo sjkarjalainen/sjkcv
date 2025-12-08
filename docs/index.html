@@ -67,20 +67,38 @@
             justify-content: flex-end; /* Työntää sisällön alas */
         }
 
-        .profile-image-container {
-            position: absolute;
-            top: 0;
-            left: -50px;
-            height: 95vh;
-            z-index: 1;
-            pointer-events: none;
+         .profile-image-container {
+        position: absolute;
+        /* PÄIVITETTY: Tiputetaan kuvaa hieman alemmas (oli 0) */
+        top: 8vh; 
+    
+        /* PÄIVITETTY: Poistetaan negatiivinen marginaali ja käytetään nollaa tai pientä plussaa */
+        left: 0; 
+    
+        /* PÄIVITETTY: Pienennetään kuvaa (oli 95vh -> nyt 80vh) */
+        height: 80vh; 
+    
+        /* UUSI: Tämä tekee kuvasta responsiivisen zoomatessa! */
+        /* Kuva saa olla max 38% ruudun leveydestä. Jos zoomaat, tila kapenee ja kuva pienenee. */
+        max-width: 38vw; 
+    
+        z-index: 1;
+        pointer-events: none;
+        
+        /* Varmistetaan, että kuva pysyy säiliönsä sisällä nätisti */
+        display: flex;
+        align-items: flex-end; 
         }
 
-        .profile-image {
-            height: 100%;
-            width: auto;
-            object-fit: cover;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+         .profile-image {
+        height: 100%;
+        width: auto;
+    
+        /* UUSI: Varmistaa kuvan skaalautuvuuden säiliön mukana */
+        max-width: 100%; 
+    
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
         }
 
         .awards-section {
