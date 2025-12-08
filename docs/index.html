@@ -14,7 +14,7 @@
         /* --- CSS-TYYLIT --- */
         :root {
             --color-bg-dark: #111111;
-            --color-accent-orange: #FF5722; /* Valtra-tyyppinen oranssi/punainen */
+            --color-accent-orange: #FF5722;
             --color-text-white: #ffffff;
             --color-text-light-gray: #cccccc;
         }
@@ -32,12 +32,12 @@
             overflow-x: hidden;
         }
 
-        /* Pääkonteineri, joka hallitsee taustagrafiikkaa */
+        /* Pääkonteineri */
         .cv-container {
             position: relative;
             min-height: 100vh;
             width: 100%;
-            /* PÄIVITETTY: Loivempi kulma (177deg) ja leikkaus ylempänä (42%) */
+            /* Taustagradientti: 177deg kulma, leikkaus 42% kohdalla */
             background: linear-gradient(
                 177deg, 
                 var(--color-bg-dark) 0%, 
@@ -52,19 +52,19 @@
 
         .content-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1.5fr; /* Vasen palsta kuvalle, oikea tekstille */
+            grid-template-columns: 1fr 1.5fr;
             max-width: 1200px;
             width: 100%;
             position: relative;
             z-index: 2;
         }
 
-        /* --- VASEN PALSTA (Kuva ja Awards) --- */
+        /* --- VASEN PALSTA --- */
         .left-column {
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: flex-end; /* Työntää sisällön alas */
         }
 
         .profile-image-container {
@@ -89,11 +89,14 @@
             z-index: 2;
         }
 
+        /* AWARDS-otsikon tyylit */
         .awards-heading {
             color: var(--color-accent-orange);
             text-transform: uppercase;
             font-weight: 900;
+            font-size: 1.5rem; /* Hieman isompi koko */
             margin-bottom: 1rem;
+            letter-spacing: 0.05em;
         }
 
         .awards-list {
@@ -103,15 +106,15 @@
         .awards-list li {
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        /* --- OIKEA PALSTA (Pääsisältö) --- */
+        /* --- OIKEA PALSTA --- */
         .right-column {
             padding-left: 2rem;
             padding-top: 2rem;
             display: flex;
             flex-direction: column;
-            /* PÄIVITETTY: Suurempi väli osioiden välillä */
             gap: 5rem; 
         }
 
@@ -164,7 +167,6 @@
         /* Experience-osio */
         .experience-section {
             color: var(--color-text-white);
-            /* PÄIVITETTY: Pieni lisämarginaali ylös varalta */
             margin-top: 1rem; 
         }
         
@@ -195,7 +197,7 @@
             font-size: 1.1rem;
         }
 
-        /* UUSI: Listatyylit (Bullet points) */
+        /* Listatyylit */
         .job-list {
             list-style: none;
             margin-top: 0.5rem;
@@ -249,7 +251,7 @@
                 padding: 2rem;
                 margin: 0 -1rem -1rem -1rem;
                 border-radius: 20px 20px 0 0;
-                gap: 3rem; /* Pienempi väli mobiilissa */
+                gap: 3rem;
             }
 
             .header-section h1 {
@@ -315,7 +317,7 @@
                 
                 <div class="job-item">
                     <div class="job-company">Valtra Inc. (AGCO Corporation)</div> <span style="opacity:0.7; font-size: 0.9rem;">(2017–Present)</span>
-                    <div class="job-title">Industrial Designer / HMI</div>
+                    <div class="job-title">Lead Industrial Designer / HMI</div>
                     <ul class="job-list">
                         <li><strong>Lead HMI Design:</strong> Complete ownership of the Valtra Smart Display UI/UX, defining visual language, interaction logic, and menu architecture.</li>
                         <li><strong>From Concept to Production:</strong> Created production-ready 3D content, icon libraries, and assets for award-winning product families (S, Q, N, G Series).</li>
