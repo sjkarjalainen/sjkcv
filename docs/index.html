@@ -37,12 +37,12 @@
             position: relative;
             min-height: 100vh;
             width: 100%;
-            /* Taustagradientti: 177deg kulma, leikkaus 42% kohdalla */
+            /* Taustagradientti: Viiva on alempana (45%) ja loiva (177deg) */
             background: linear-gradient(
                 177deg, 
                 var(--color-bg-dark) 0%, 
-                var(--color-bg-dark) 39%, 
-                var(--color-accent-orange) 39%, 
+                var(--color-bg-dark) 45%, 
+                var(--color-accent-orange) 45%, 
                 var(--color-accent-orange) 100%
             );
             display: flex;
@@ -67,38 +67,25 @@
             justify-content: flex-end; /* Työntää sisällön alas */
         }
 
-         .profile-image-container {
-        position: absolute;
-        /* PÄIVITETTY: Tiputetaan kuvaa hieman alemmas (oli 0) */
-        top: 8vh; 
-    
-        /* PÄIVITETTY: Poistetaan negatiivinen marginaali ja käytetään nollaa tai pientä plussaa */
-        left: 0; 
-    
-        /* PÄIVITETTY: Pienennetään kuvaa (oli 95vh -> nyt 80vh) */
-        height: 80vh; 
-    
-        /* UUSI: Tämä tekee kuvasta responsiivisen zoomatessa! */
-        /* Kuva saa olla max 38% ruudun leveydestä. Jos zoomaat, tila kapenee ja kuva pienenee. */
-        max-width: 38vw; 
-    
-        z-index: 1;
-        pointer-events: none;
-        
-        /* Varmistetaan, että kuva pysyy säiliönsä sisällä nätisti */
-        display: flex;
-        align-items: flex-end; 
+        /* KUVA TYÖPÖYDÄLLÄ */
+        .profile-image-container {
+            position: absolute;
+            top: 4vh;       /* Hieman alempana yläreunasta */
+            left: 0;
+            height: 85vh;   /* Iso korkeus */
+            max-width: 45vw; /* Iso leveys työpöydällä (suurennettu toiveesta) */
+            z-index: 1;
+            pointer-events: none;
+            display: flex;
+            align-items: flex-end;
         }
 
-         .profile-image {
-        height: 100%;
-        width: auto;
-    
-        /* UUSI: Varmistaa kuvan skaalautuvuuden säiliön mukana */
-        max-width: 100%; 
-    
-        object-fit: contain;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+        .profile-image {
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
         }
 
         .awards-section {
@@ -112,9 +99,10 @@
             color: var(--color-accent-orange);
             text-transform: uppercase;
             font-weight: 900;
-            font-size: 1.5rem; /* Hieman isompi koko */
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
+            display: block; 
         }
 
         .awards-list {
@@ -133,7 +121,8 @@
             padding-top: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 5rem; 
+            /* Tiiviimpi väli osioiden välillä (Experience / Education) */
+            gap: 2.5rem; 
         }
 
         /* Header-osio */
@@ -238,7 +227,7 @@
             font-weight: bold;
         }
 
-        /* --- RESPONSIVISUUS --- */
+        /* --- RESPONSIVISUUS (MOBIILI) --- */
         @media (max-width: 900px) {
             .cv-container {
                 background: var(--color-bg-dark);
@@ -251,14 +240,22 @@
                 gap: 2rem;
             }
 
+            /* TÄSSÄ ON MOBIILIKORJAUS KUVALLE */
             .profile-image-container {
                 position: relative;
-                height: 50vh;
+                top: 0;
                 left: 0;
+                height: 50vh;   /* Pienempi korkeus mobiilissa */
+                width: 100%;
+                max-width: 100%; /* TÄRKEÄ: Palautetaan leveys koko ruudun levyiseksi */
                 margin-bottom: -100px;
                 z-index: 0;
                 text-align: center;
-                width: 100%;
+                display: block; /* Varmistetaan näkyvyys */
+            }
+            
+            .profile-image {
+                 object-position: top center;
             }
             
             .right-column {
@@ -292,7 +289,7 @@
         
         <div class="left-column">
             <div class="profile-image-container">
-                <img src="samu.PNG" alt="Samu Karjalainen" class="profile-image">
+                <img src="samu.png" alt="Samu Karjalainen" class="profile-image">
             </div>
 
             <section class="awards-section">
@@ -337,7 +334,7 @@
                     <div class="job-company">Valtra Inc. (AGCO Corporation)</div> <span style="opacity:0.7; font-size: 0.9rem;">(2017–Present)</span>
                     <div class="job-title">Industrial Designer / HMI</div>
                     <ul class="job-list">
-                        <li><strong>Lead HMI Design:</strong> Complete ownership of the Valtra Smart Display UI/UX, defining visual language, interaction logic, and menu architecture.</li>
+                        <li><strong>HMI Design:</strong> Complete ownership of the Valtra Smart Display UI/UX, defining visual language, interaction logic, and menu architecture.</li>
                         <li><strong>From Concept to Production:</strong> Created production-ready 3D content, icon libraries, and assets for award-winning product families (S, Q, N, G Series).</li>
                         <li><strong>Physical-Digital Integration:</strong> Collaborated deeply with software and mechanical engineers to merge physical controls seamlessly with the digital interface.</li>
                     </ul>
