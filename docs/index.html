@@ -67,25 +67,22 @@
             justify-content: flex-end; /* Työntää sisällön alas */
         }
 
-       /* KUVA TYÖPÖYDÄLLÄ - PAKOTETTU ISO KOKO */
+       /* KUVA TYÖPÖYDÄLLÄ - SÄÄDETTY KOKO */
 .profile-image-container {
     position: absolute;
-    /* Nostetaan kuvaa reilusti ylös, jotta pää ei leikkaudu pois kun kuva suurenee */
-    top: -15vh;       
-    left: -5vw; /* Siirretään hieman vasemmalle, jotta se mahtuu paremmin */
+    /* Nostetaan vähemmän kuin äsken, jotta pää ei osu kattoon */
+    top: -8vh;       
+    left: -2vw; /* Hieman vähemmän vasemmalle */
     
-    /* Annetaan valtavasti tilaa pystysuunnassa */
-    height: 140vh;   
+    /* Pienennetään hieman edellisestä kokeilusta */
+    height: 120vh;   
+    width: 48vw; /* Oli 60vw -> Nyt maltillisempi */
     
-    /* TÄRKEÄ: Pakotetaan leveys (width), ei maksimileveyttä (max-width). */
-    /* Tämä pakottaa selaimen venyttämään kuvan tähän leveyteen. */
-    width: 60vw; 
-    max-width: none; /* Poistetaan rajoitukset */
-    
+    max-width: none;
     z-index: 1;
     pointer-events: none;
     display: flex;
-    align-items: flex-end; /* Pitää kuvan alareunassa kiinni */
+    align-items: flex-end; 
 }
 
 .profile-image {
