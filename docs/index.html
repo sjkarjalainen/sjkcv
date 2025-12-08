@@ -29,7 +29,7 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--color-bg-dark);
             color: var(--color-text-white);
-            overflow-x: hidden; /* Estetään sivuttaisvieritys diagonaalitaustan takia */
+            overflow-x: hidden;
         }
 
         /* Pääkonteineri, joka hallitsee taustagrafiikkaa */
@@ -37,7 +37,7 @@
             position: relative;
             min-height: 100vh;
             width: 100%;
-            /* Luodaan diagonaalinen tausta CSS-gradientilla */
+            /* PÄIVITETTY: Loivempi kulma (177deg) ja leikkaus ylempänä (42%) */
             background: linear-gradient(
                 177deg, 
                 var(--color-bg-dark) 0%, 
@@ -50,14 +50,13 @@
             padding: 2rem;
         }
 
-        /* Sisällön wrapperi, joka rajaa leveyden */
         .content-wrapper {
             display: grid;
             grid-template-columns: 1fr 1.5fr; /* Vasen palsta kuvalle, oikea tekstille */
             max-width: 1200px;
             width: 100%;
             position: relative;
-            z-index: 2; /* Varmistaa että sisältö on taustan päällä */
+            z-index: 2;
         }
 
         /* --- VASEN PALSTA (Kuva ja Awards) --- */
@@ -65,31 +64,29 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Työntää Awards-osion alas */
+            justify-content: flex-end;
         }
 
-        /* Henkilökuvan tyylit */
         .profile-image-container {
             position: absolute;
             top: 0;
-            left: -50px; /* Hienosäätö kuvan sijainnille */
+            left: -50px;
             height: 95vh;
             z-index: 1;
-            pointer-events: none; /* Jotta tekstiä voi valita kuvan päältä */
+            pointer-events: none;
         }
 
         .profile-image {
-            height: 80%;
+            height: 100%;
             width: auto;
             object-fit: cover;
-            /* Tärkeä: Tämä saa kuvan näyttämään siltä, että se seisoo oranssin päällä */
             filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
         }
 
         .awards-section {
             margin-bottom: 2rem;
             position: relative;
-            z-index: 2; /* Teksti kuvan jalkojen päällä */
+            z-index: 2;
         }
 
         .awards-heading {
@@ -114,15 +111,11 @@
             padding-top: 2rem;
             display: flex;
             flex-direction: column;
-            gap: 5rem;
+            /* PÄIVITETTY: Suurempi väli osioiden välillä */
+            gap: 5rem; 
         }
 
-        /* UUSI: Lisätään tyhjää tilaa Experience-osion yläpuolelle */
-        .experience-section {
-            margin-top: 1rem; 
-        }
-
-        /* Header-osio (Nimi ja Summary) */
+        /* Header-osio */
         .header-section h1 {
             font-weight: 900;
             font-size: 4rem;
@@ -161,18 +154,22 @@
             font-weight: 700;
         }
 
-        /* UUSI: Font Awesome ikonien tyylittely (korvaa vanhan .icon-placeholder tyylin) */
         .contact-item i {
             color: var(--color-accent-orange);
             font-size: 1.3rem;
-            min-width: 30px; /* Varmistaa että tekstit alkavat samasta kohdasta */
+            min-width: 30px;
             text-align: center;
         }
 
-        /* Experience-osio (Oranssilla alueella) */
-        .experience-section, .education-section {
-            /* Teksti on valkoista, koska tausta on oranssi tässä kohtaa */
-            color: var(--color-text-white); 
+        /* Experience-osio */
+        .experience-section {
+            color: var(--color-text-white);
+            /* PÄIVITETTY: Pieni lisämarginaali ylös varalta */
+            margin-top: 1rem; 
+        }
+        
+        .education-section {
+            color: var(--color-text-white);
         }
 
         .section-heading {
@@ -183,27 +180,45 @@
         }
 
         .job-item {
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .job-title {
             font-weight: 900;
             font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
 
         .job-company {
             font-weight: 700;
-            margin-bottom: 0.5rem;
             display: inline-block;
+            font-size: 1.1rem;
         }
 
-        .job-description {
+        /* UUSI: Listatyylit (Bullet points) */
+        .job-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .job-list li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
             line-height: 1.5;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
-        /* --- RESPONSIVISUUS (Mobiilinäkymä) --- */
+        .job-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-orange);
+            font-weight: bold;
+        }
+
+        /* --- RESPONSIVISUUS --- */
         @media (max-width: 900px) {
             .cv-container {
                 background: var(--color-bg-dark);
@@ -212,7 +227,7 @@
             }
 
             .content-wrapper {
-                grid-template-columns: 1fr; /* Yksi palsta */
+                grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
@@ -220,14 +235,10 @@
                 position: relative;
                 height: 50vh;
                 left: 0;
-                margin-bottom: -100px; /* Kuva menee hieman tekstin alle */
+                margin-bottom: -100px;
                 z-index: 0;
-                text-align: center; /* Keskittää kuvan mobiilissa */
+                text-align: center;
                 width: 100%;
-            }
-
-            .profile-image {
-                 object-position: top center;
             }
             
             .right-column {
@@ -238,6 +249,7 @@
                 padding: 2rem;
                 margin: 0 -1rem -1rem -1rem;
                 border-radius: 20px 20px 0 0;
+                gap: 3rem; /* Pienempi väli mobiilissa */
             }
 
             .header-section h1 {
@@ -282,7 +294,7 @@
                 <h1>SAMU<br>KARJALAINEN</h1>
                 <h2>Multidisciplinary Designer</h2>
                 <p class="summary-text">
-                    Multidisciplinary designer combining UI/UX, HMI systems, visual design, industrial design, and advanced 3D visualization. Signature strength in visual refinement.
+                    Multidisciplinary designer combining UI/UX, HMI systems, visual design, industrial design, and advanced 3D visualization. Signature strength in visual refinement and bridging the gap between physical and digital experiences.
                 </p>
                 
                 <div class="contact-info">
@@ -302,31 +314,38 @@
                 <h3 class="section-heading">EXPERIENCE</h3>
                 
                 <div class="job-item">
-                    <div class="job-company">Valtra Inc. (AGCO Corporation)</div> (2017–Present)
-                    <div class="job-title">Industrial Designer / HMI</div>
-                    <p class="job-description">Complete visual and interaction design of Valtra Smart Display including UI logic, visual system, iconography, 3D content, menu architecture, component library, and end-to-end interaction flows. Responsible for every design detail on the display panel.</p>
+                    <div class="job-company">Valtra Inc. (AGCO Corporation)</div> <span style="opacity:0.7; font-size: 0.9rem;">(2017–Present)</span>
+                    <div class="job-title">Lead Industrial Designer / HMI</div>
+                    <ul class="job-list">
+                        <li><strong>Lead HMI Design:</strong> Complete ownership of the Valtra Smart Display UI/UX, defining visual language, interaction logic, and menu architecture.</li>
+                        <li><strong>From Concept to Production:</strong> Created production-ready 3D content, icon libraries, and assets for award-winning product families (S, Q, N, G Series).</li>
+                        <li><strong>Physical-Digital Integration:</strong> Collaborated deeply with software and mechanical engineers to merge physical controls seamlessly with the digital interface.</li>
+                    </ul>
                 </div>
 
                 <div class="job-item">
-                    <div class="job-company">Industrial Designer / Trainee</div> (2017–2018)
-                    <p class="job-description">Developed design language, created UI assets and icons. Contributed to award-winning product families (S, Q, N, G Series).</p>
+                    <div class="job-company">Self-Employed</div> <span style="opacity:0.7; font-size: 0.9rem;">(2016–2021)</span>
+                    <div class="job-title">Multidisciplinary Design Partner</div>
+                    <ul class="job-list">
+                        <li>Provided end-to-end design services for SMEs, covering Brand Identity, Web Design, and Industrial Design concepts.</li>
+                        <li>Specialized in high-end 3D visualization and marketing imagery for product launches.</li>
+                    </ul>
                 </div>
 
                 <div class="job-item">
-                    <div class="job-company">Self-Employed Designer</div> (2016–2021)
-                    <p class="job-description">One-person service for smaller companies covering branding, visual design, product imagery, and web design.</p>
-                </div>
-
-                <div class="job-item">
-                    <div class="job-company">Komia Design Corp.</div> (2013–2016)
-                    <div class="job-title">Junior Designer & Trainee</div>
-                    <p class="job-description">3D modeling, concepting, technical drawings, and visualization for clients such as Pole Bicycles and Kiho / Mastercom.</p>
+                    <div class="job-company">Komia Design Corp.</div> <span style="opacity:0.7; font-size: 0.9rem;">(2013–2016)</span>
+                    <div class="job-title">Industrial Designer</div>
+                    <ul class="job-list">
+                        <li><strong>Pole Bicycles:</strong> Concept design, 3D modeling, and visualization for carbon fiber bicycle frames.</li>
+                        <li><strong>Murean:</strong> Industrial design and technical production drawings for smart furniture systems.</li>
+                        <li><strong>Kiho / Mastercom:</strong> Hardware design and visualization for digital IoT devices.</li>
+                    </ul>
                 </div>
             </section>
 
              <section class="education-section">
                 <h3 class="section-heading">EDUCATION</h3>
-                 <div class="job-item">
+                <div class="job-item">
                     <div class="job-title">Bachelor of Industrial & Product Design</div>
                     <p class="job-description">Turku University of Applied Sciences</p>
                 </div>
