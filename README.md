@@ -1,2 +1,2 @@
 # sjkarjalainen.github.io
-CV / Portfolio
+CV
